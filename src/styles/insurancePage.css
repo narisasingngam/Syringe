@@ -11,13 +11,16 @@
 }
 
 .user-input{
-    height: 200px;
+    height: 400px;
     flex: 7;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    margin-right: 20px;
 }
 
 .user-status{
     flex: 3;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    height: 400px;
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  */
 }
 
