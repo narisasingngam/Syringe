@@ -24,3 +24,17 @@
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  */
 }
 
+.carosusel{
+    height: 100px;
+    width: 200px;
+    padding-top: 80px;
+    text-align: center;
+    background: #52C0F5;
+    color: #FFF;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    /* margin-right: 300px; */
+    /* margin-left: 300px; */
+}
+

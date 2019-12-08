@@ -2,17 +2,19 @@ import React, { Component } from 'react'
 import './../styles/insurancePage.css'
 
 export class InsurancePage extends Component {
+
+    
+
     render() {
         return (
             <div className="container">
                 <div className="insu-page">
                     <div className="user-input">
-                        Patient Detail
+                        Patient detail
                 </div>
                     <div className="user-status">
-                        ha
+                    Patient status
                 </div>
-
                 </div>
             </div>
         )
