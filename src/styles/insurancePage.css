@@ -1,0 +1,23 @@
+.container{
+   /* background: lightgray; */
+   /* opacity: 0.2; */
+   min-height: 100vh;
+   padding-top: 50px;
+    
+}
+.insu-page{
+    display: flex;
+    margin: 0 50px 30px 80px;
+}
+
+.user-input{
+    height: 200px;
+    flex: 7;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+}
+
+.user-status{
+    flex: 3;
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  */
+}
+
