@@ -1,7 +1,20 @@
 .nav{
-    height: 70px;
+    height: 80px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; 
     transition: 0.3s;
     /* border-radius: 5px; 5px rounded corners */
-   background: #BD151F;
+   background: darkcyan;
+}
+
+.logo{
+    width: 60px;
+    height: 60px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.btn-company{
+    color: white;
+    font-weight: bold;
+    margin-right: 50px;
 }
