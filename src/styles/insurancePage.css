@@ -1,7 +1,7 @@
 .container{
    /* background: lightgray; */
    /* opacity: 0.2; */
-   min-height: 100vh;
+   /* min-height: 100vh; */
    padding-top: 50px;
     
 }
@@ -12,13 +12,13 @@
 
 .user-input{
     height: 400px;
-    flex: 7;
+    flex: 6;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
     margin-right: 20px;
 }
 
 .user-status{
-    flex: 3;
+    flex: 4;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
     height: 400px;
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  */
@@ -36,5 +36,56 @@
     border-radius: 10px;
     /* margin-right: 300px; */
     /* margin-left: 300px; */
+}
+
+.input-pat-details{
+    margin: 10px 20px 0 20px;
+}
+
+.input-id{
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.show-user-details{
+    background: #F9E79F ;
+    color: #873600;
+    width: 650px;
+    height: 250px;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.submit-id{
+    color: white;
+    background: darkcyan;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: 15px;
+    border-color: darkcyan;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+}
+
+.input-disease{
+    font-size: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    border-width: 0 !important;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.text-set{
+    margin-bottom: 20px;
+}
+
+.insure-text{
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
 }
 

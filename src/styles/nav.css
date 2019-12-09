@@ -4,17 +4,22 @@
     transition: 0.3s;
     /* border-radius: 5px; 5px rounded corners */
    background: darkcyan;
+   display: flex;
 }
 
 .logo{
+    flex: 7 !important;
     width: 60px;
     height: 60px;
     margin-left: 30px;
     margin-top: 10px;
 }
 
-.btn-company{
+.btn-admin{
+    flex: 3 !important;
     color: white;
-    font-weight: bold;
-    margin-right: 50px;
+    /* font-weight: bold; */
+    text-decoration:none;
+    margin-left: 10px;
+    margin-top: 30px;
 }

@@ -10,9 +10,9 @@ export class Navbar extends Component {
                 <Link to="/">
                 <img className="logo" src={logo} alt="Logo" />
                 </Link>
-                <Link to="/admin" className="btn-company">
-                {/* <i class="fas fa-search"></i> */}
-                    Search Company
+                <Link to="/admin" className="btn-admin">
+                <i class="fas fa-user-cog"></i>
+                    admin
                 </Link>
             </div>
         )

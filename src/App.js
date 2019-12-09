@@ -6,6 +6,7 @@ import UserInput from './components/UserInput'
 import AdminLogin from './components/login/Admin'
 import UserLogin from './components/login/User'
 import { Switch, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
