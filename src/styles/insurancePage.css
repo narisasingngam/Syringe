@@ -12,13 +12,13 @@
 
 .user-input{
     height: 400px;
-    flex: 7;
+    flex: 6;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
     margin-right: 20px;
 }
 
 .user-status{
-    flex: 3;
+    flex: 4;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
     height: 400px;
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  */
@@ -39,7 +39,7 @@
 }
 
 .input-pat-details{
-    margin: 0 0 0 20px;
+    margin: 10px 20px 0 20px;
 }
 
 .input-id{
@@ -48,15 +48,15 @@
 }
 
 .show-user-details{
-    /* text-align: center; */
     background: #F9E79F ;
     color: #873600;
-    width: 700px;
+    width: 650px;
     height: 250px;
     padding: 10px 10px 10px 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
     font-weight: bold;
     text-align: center;
+    margin-top: 10px;
 }
 
 .submit-id{
@@ -65,7 +65,7 @@
     font-weight: bold;
     font-size: 14px;
     border-radius: 6px;
-    margin-left: 15px;
+    margin: 15px;
     border-color: darkcyan;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
 }

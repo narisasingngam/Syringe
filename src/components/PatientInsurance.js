@@ -23,7 +23,7 @@ export default class PatientInsurance extends Component {
         this.callAPI()
         const details = this.state.insuranceDetail.map((item, key) =>
             <Carousel.Item>
-                <Card style={{ marginTop: '35px', marginLeft: '2.9rem', width: '12rem', height: '17rem' }}>
+                <Card style={{ marginTop: '40px', marginLeft: '0.9rem', width: '12rem', height: '17rem' }}>
                     <Card.Img style={{ height: '10rem', width: '' }} variant="top" src={item.picture} />
                     <Card.Body className="card-body">
                         <Card.Title><h5>{item.company}</h5></Card.Title>

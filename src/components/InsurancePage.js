@@ -46,7 +46,7 @@ export class InsurancePage extends Component {
                 <div className="insu-page">
                     <div className="user-input">
                         <div className="input-pat-details">
-                            <h4>Patient details</h4>
+                            <h5>Patient details</h5>
                             <input
                                 className="input-id"
                                 placeholder="type patient's ID card"
@@ -71,7 +71,7 @@ export class InsurancePage extends Component {
                         </div>
                     </div>
                     <div className="user-status">
-                        <h4 className="insure-text">Patient Insurance</h4>
+                        <h5 className="insure-text">Patient Insurance</h5>
                         <PatientInsurance/>
                 </div>
                 </div>

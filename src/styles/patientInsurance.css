@@ -5,3 +5,6 @@
 .carousel-indicators{
     display: none !important;
 }
+.user-status {
+    padding-left: 30px;
+}
