@@ -31,8 +31,6 @@ export class InsurancePage extends Component {
                 const date_user = date_split[2] + "-" + date_split[1] + "-" + date_split[0]
                 this.setState({ setDate: date_user })
             })
-
-
     }
 
     inputID = (event) => {
@@ -72,8 +70,8 @@ export class InsurancePage extends Component {
                     </div>
                     <div className="user-status">
                         <h4 className="insure-text">Patient Insurance</h4>
-                        <PatientInsurance/>
-                </div>
+                        <PatientInsurance insuranceDetail={this.state.patientDetail} />
+                    </div>
                 </div>
             </div>
         )
