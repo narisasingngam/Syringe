@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './../styles/insurancePage.css'
 import axios from 'axios';
 import PatientInsurance from './PatientInsurance'
+import TableResult from './TableResult'
 
 export class InsurancePage extends Component {
 
@@ -14,9 +15,38 @@ export class InsurancePage extends Component {
                 date_of_birth: "",
             }],
             setInput: "",
-            setDate: ""
+            setDate: "",
+            apiDisease: [],
+            searchDisease: [],
+            valueDiseaseInput: "",
+            enabledOrder: false,
         }
 
+        this.callApi()
+
+    }
+
+    callApi() {
+        axios.get('https://insuranceapii.herokuapp.com/disease')
+            .then(res => {
+                console.log(res.data);
+                this.setState({ apiDisease: res.data })
+            })
+    }
+
+    handleInputDisease = (event) => {
+        this.setState({ valueDiseaseInput: event.target.value })
+        const filterValues = (name) => {
+            return this.state.apiDisease.filter(data => {
+                return data.symtomp.toLowerCase().indexOf(name.toLowerCase()) > -1;
+            });
+        }
+
+        if (event.target.value === "") {
+            this.setState({ searchDisease: [], submitDiseaseValue: "" });
+        } else {
+            this.setState({ searchDisease: filterValues(event.target.value) });
+        }
     }
 
     submitID() {
@@ -37,8 +67,28 @@ export class InsurancePage extends Component {
         this.setState({ setInput: event.target.value })
     }
 
-    render() {
+    clickDisease(symtomp) {
+        this.setState({ searchDisease: [], valueDiseaseInput: symtomp })
 
+        axios.post('https://insuranceapii.herokuapp.com/user/details/disease',{id: this.state.patientDetail[0].personal_id, disease: symtomp })
+            .then(res => {
+                console.log(res.data)
+                this.setState({ patientDetail: res.data })
+            })
+            .catch(error => {console.log('error')})
+
+        console.log(symtomp)
+
+    }
+
+    searchInsurance() {
+        this.setState({ enabledOrder: true })
+    }
+
+    render() {
+        const items = this.state.searchDisease.map((item, key) =>
+            <button className="disease-btn" key={item.id} onClick={() => this.clickDisease(item.symtomp)}>{item.symtomp}</button>
+        )
         return (
             <div className="container">
                 <div className="insu-page">
@@ -58,13 +108,18 @@ export class InsurancePage extends Component {
                                     <input
                                         className="input-disease"
                                         placeholder="type patient disease"
+                                        onChange={this.handleInputDisease}
+                                        value={this.state.valueDiseaseInput}
                                     />
                                     <input
                                         className="input-disease"
                                         placeholder="type cost"
                                     />
                                 </div>
-                                <button className="submit-id">Search</button>
+                                <div className="item-disease">
+                                    {items}
+                                </div>
+                                <button className="submit-id" onClick={() => this.searchInsurance()} >Search</button>
                             </div>
                         </div>
                     </div>
@@ -73,6 +128,17 @@ export class InsurancePage extends Component {
                         <PatientInsurance insuranceDetail={this.state.patientDetail} />
                     </div>
                 </div>
+                <footer class="footer" style={this.state.enabledOrder ? {} : { display: 'none' }} >
+                    <div className="icon-check">
+                        <i class="far fa-check-circle fa-2x "></i>
+                        <i class="far fa-times-circle fa-2x "></i>
+                    </div>
+
+                    <h6>
+                        Patient Insurance approve!
+                    </h6>
+                    <TableResult />
+                </footer>
             </div>
         )
     }
