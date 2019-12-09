@@ -96,3 +96,45 @@
 .selected-insure{
     font-size: medium;
 }
+.disease-btn{
+    width: 171px;
+    color: black;
+    border-color: lightgray !important;
+    background-color: white !important;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: 5px 5px 5px 5px;
+    display: flex;
+    font-size: 15px;
+  }
+  
+  .disease-btn:hover{
+    background: darkcyan !important;
+    border-color: darkcyan !important;
+    color: white;
+    /* -webkit-box-shadow: 0px 0px 5px black; */
+    /* box-shadow: 0px 0px 5px black; */
+  }
+
+  .item-disease{
+    position: fixed;
+    margin: -20px 0 0 95px;
+    overflow: scroll;
+    height: 101px;
+  }
+
+  .footer{
+      margin-left: 80px;
+      height: auto;
+      width: 980px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 22px;
+      margin-bottom: 20px;
+  }
+
+.icon-check {
+    color: cadetblue;
+  }

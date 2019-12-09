@@ -42,10 +42,10 @@ export default class PatientInsurance extends Component {
                 <Card style={{ marginTop: '35px', marginLeft: '2.4rem', width: '12rem', height: '18rem' }}>
                     <Card.Img style={{ height: '10rem', width: '' }} variant="top" src={item.picture} />
                     <Card.Body className="card-body">
-                        <Card.Title><h6 className="company-name">{item.company}</h6></Card.Title>
+                        <Card.Title><h6 className="company-name">{item.company_name}</h6></Card.Title>
                         <Card.Text>
                             <h6 className="program-name">{item.program_name}</h6>
-                            <button className="select-btn" ref={(key + 1)} onClick={e => this.saveDetail(item.company, item.program_name, e)} disabled={false}>Select</button>
+                            <button className="select-btn" ref={(key + 1)} onClick={e => this.saveDetail(item.company_name, item.program_name, e)} disabled={false}>Select</button>
                         </Card.Text>
                         <Card.Text>
                         </Card.Text>
