@@ -1,0 +1,23 @@
+.user-box{
+    margin: auto;
+    padding: 15px;
+    width: 60%;
+    height: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+}
+
+.id-text-user{
+    display: inline-flex;
+    font-weight: bold;
+}
+
+
+.name-user{
+    margin-right: 20px;
+}
+.pass-user{
+    flex: 3;
+}
+
+
+
