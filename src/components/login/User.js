@@ -14,6 +14,8 @@ export class UserLogin extends Component {
 			    <span class="">or use your <Link to="/login/admin">admin account</Link></span>
                 <form action="#">
                     <Login/>
+                    <input class="login-submit" type="submit" name="sign-in" value="Sign In"/>
+                    <button class="login-signup" >Sign Up</button>
                 </form>
             </div>
         )

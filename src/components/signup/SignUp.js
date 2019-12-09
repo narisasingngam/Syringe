@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './../../styles/login.css'
 
 
-export class Login extends Component {
+export class SignUp extends Component {
     render() {
         return (
             <div>
@@ -22,4 +22,4 @@ export class Login extends Component {
     }
 }
 
-export default Login
+export default SignUp

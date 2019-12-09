@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Login from './Login'
+import Signup from './SignUp'
 import './../../styles/login.css'
 import { Link } from 'react-router-dom';
 
 import userIcon from './../../images/icons_User.png'
 
-export class AdminLogin extends Component {
+export class AdminSignUp extends Component {
     render() {
         return (
             <div class="login-container bg-white shadow al-center">
@@ -13,7 +13,7 @@ export class AdminLogin extends Component {
                 <h1 class="loginH1">Admin Login</h1>
                 <span class="">or use your <Link to="/login/user">user account</Link></span>
                 <form action="#">
-                    <Login/>
+                    <Signup/>
                     <input class="login-submit" type="submit" name="sign-in" value="Sign In"/>
                     <button class="login-signup" >Sign Up</button>
                 </form>
@@ -21,4 +21,4 @@ export class AdminLogin extends Component {
         )
     }
 }
-export default AdminLogin
+export default AdminSignUp
