@@ -1,10 +1,39 @@
-.card-body{
-
-}
-
 .carousel-indicators{
     display: none !important;
 }
 .user-status {
     background: rgb(0, 139, 139,0.5);
+}
+
+.select-btn{
+    color: white;
+    background: darkcyan;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-top: 15px;
+    margin-left: 45px;
+    border-color: darkcyan;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.select-btn:disabled{
+    color: white;
+    background:  rgb(0, 139, 139,0.6);
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-top: 15px;
+    margin-left: 45px;
+    border-color: rgb(0, 139, 139,0.6);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.company-name{
+    font-size: small;
+    font-weight: bold;
+}
+
+.program-name{
+    font-size: small;
 }

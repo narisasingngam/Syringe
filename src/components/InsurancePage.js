@@ -13,9 +13,9 @@ export class InsurancePage extends Component {
                 date_of_birth: "",
             }],
             setInput: "",
-            setDate: ""
+            setDate: "",
+            userSelectedInsurance: []
         }
-
     }
 
     submitID() {
@@ -36,7 +36,22 @@ export class InsurancePage extends Component {
         this.setState({ setInput: event.target.value })
     }
 
+    removeInsurance(key) {
+        console.log(this.state.userSelectedInsurance[key])
+        const removeInsurance = this.state.userSelectedInsurance.splice(key)
+        this.setState({userSelectedInsurance: removeInsurance})
+        
+    }
+
+    
+
     render() {
+        console.log(this.state.userSelectedInsurance)
+        const userInsurance = this.state.userSelectedInsurance.map((item, key) =>
+        <h5 className="selected-insure">{item.companyName}({item.programName})
+            <button  className="select-btn" onClick={() => this.removeInsurance(key+1)}>-</button>
+        </h5>
+        )
 
         return (
             <div className="container">
@@ -63,13 +78,16 @@ export class InsurancePage extends Component {
                                         placeholder="type cost"
                                     />
                                 </div>
+                                <div className="scroll">
+                                    {userInsurance}
+                                </div>
                                 <button className="submit-id">Search</button>
                             </div>
                         </div>
                     </div>
                     <div className="user-status">
                         <h5 className="insure-text">Patient Insurance</h5>
-                        <PatientInsurance insuranceDetail={this.state.patientDetail} />
+                        <PatientInsurance insuranceDetail={this.state.patientDetail} selectedInsurance={v => this.setState({ userSelectedInsurance: v })} />
                     </div>
                 </div>
             </div>
