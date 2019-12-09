@@ -1,0 +1,7 @@
+.card-body{
+    background: rgb(249, 231, 159);
+}
+
+.carousel-indicators{
+    display: none !important;
+}

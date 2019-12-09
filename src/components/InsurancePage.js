@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './../styles/insurancePage.css'
 import axios from 'axios';
+import PatientInsurance from './PatientInsurance'
 
 export class InsurancePage extends Component {
 
@@ -70,7 +71,8 @@ export class InsurancePage extends Component {
                         </div>
                     </div>
                     <div className="user-status">
-                        Patient status
+                        <h4 className="insure-text">Patient Insurance</h4>
+                        <PatientInsurance/>
                 </div>
                 </div>
             </div>
