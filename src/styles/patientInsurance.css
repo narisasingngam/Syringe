@@ -1,10 +1,10 @@
 .card-body{
-    background: rgb(249, 231, 159);
+
 }
 
 .carousel-indicators{
     display: none !important;
 }
 .user-status {
-    /* padding-left: 30px; */
+    background: rgb(0, 139, 139,0.5);
 }
