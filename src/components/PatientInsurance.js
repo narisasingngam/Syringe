@@ -17,7 +17,7 @@ export default class PatientInsurance extends Component {
         } else {
             details = this.props.insuranceDetail.map((item, key) =>
                 <Carousel.Item>
-                    <Card style={{ marginTop: '35px', marginLeft: '2.9rem', width: '12rem', height: '17rem' }}>
+                    <Card style={{ marginTop: '35px', marginLeft: '2.5rem', width: '12rem', height: '17rem' }}>
                         <Card.Img style={{ height: '10rem', width: '' }} variant="top" src={item.picture} />
                         <Card.Body className="card-body">
                             <Card.Title><h6>{item.company}</h6></Card.Title>
