@@ -4,6 +4,7 @@ import Insurance from './components/InsurancePage'
 import Navbar from './components/Navbar'
 import UserInput from './components/UserInput'
 import { Switch, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
