@@ -7,7 +7,6 @@ export class InsurancePage extends Component {
 
     constructor(props) {
         super(props)
-
         this.state = {
             patientDetail: [{
                 name: "",
@@ -69,7 +68,7 @@ export class InsurancePage extends Component {
                         </div>
                     </div>
                     <div className="user-status">
-                        <h4 className="insure-text">Patient Insurance</h4>
+                        <h5 className="insure-text">Patient Insurance</h5>
                         <PatientInsurance insuranceDetail={this.state.patientDetail} />
                     </div>
                 </div>
