@@ -1,30 +1,34 @@
 import React, { Component } from 'react'
 import './../../styles/login.css'
 import { Link } from 'react-router-dom';
-
 import userIcon from './../../images/icons_User.png'
+import cookie from 'react-cookies'
+import Navbar from './../Navbar'
 
 export class AdminLogin extends Component {
     constructor(props) {
         super(props);
-
+        
         this.handleSignUp = this.handleSignUp.bind(this);
       }
-       
 
     handleSignUp(event){
         event.preventDefault();
 
         if(this.refs.username && this.refs.password){
-            if(this.refs.username.value === "admin" && this.refs.password.value === "admin")
+            if(this.refs.username.value === "admin" && this.refs.password.value === "admin"){
+                cookie.save('name', "admin", { path: '/' })
+                alert("Adnmin login success")
                 this.props.history.push('/');
-            else
+            }else
                 alert("Wrong Username or Password")
         }
             
     }
     render() {
         return (
+            <div>
+                <Navbar value="login"/>
             <div class="login-container bg-white shadow al-center">
                 <img class="" src={userIcon}  alt="user icon"/>
                 <h1 class="loginH1">Admin Login</h1>
@@ -43,6 +47,7 @@ export class AdminLogin extends Component {
 	                </div>
                     <input class="login-submit" type="submit" name="sign-in" value="Sign In"/>
                 </form>
+            </div>
             </div>
         )
     }

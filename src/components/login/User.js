@@ -1,30 +1,37 @@
 import React, { Component } from 'react'
 import './../../styles/login.css'
 import { Link } from 'react-router-dom';
-
+import Navbar from './../Navbar'
 import userIcon from './../../images/icons_User.png'
+import cookie from 'react-cookies'
 
 export class UserLogin extends Component {
     constructor(props) {
         super(props);
 
+       
         this.handleLogin = this.handleLogin.bind(this);
       }
        
 
     handleLogin(event){
         event.preventDefault();
-    
+        
         let id = parseInt(this.refs.citizen_id.value)
+        var pro = this
         if(Number.isInteger(id)){
 
         var request = new XMLHttpRequest()
+        
         request.onreadystatechange = function() {
             if (request.readyState === XMLHttpRequest.DONE){
                 if(JSON.parse(request.response).status === "success"){
-
+                    cookie.save('name', id)
+                    alert("Login success")
+                    setTimeout(() => {}, 1000)
+                    pro.props.history.push('/');
                 }else{
-                    alert("Invalid Login")
+                    alert("Invalid Username or Password")
                 }
             }
         }
@@ -38,16 +45,15 @@ export class UserLogin extends Component {
 
         request.send(JSON.stringify(data))
 
-        this.props.history.push('/login/user');
         }else{
             alert("Invalid Citizen-Id")
         }
 
-           
     }
 
     render() {
         return (
+            <div><Navbar value="login"/>
             <div class="login-container bg-white shadow al-center">
                 <img src={userIcon}  alt="user icon"/>
                 <h1 class="loginH1">Account Login</h1>
@@ -67,6 +73,7 @@ export class UserLogin extends Component {
                     <input class="login-submit" type="submit" name="sign-in" value="Sign In"/>
                     <Link to="/signup/user"><button class="login-signup" >Sign Up</button></Link>
                 </form>
+            </div>
             </div>
         )
     }

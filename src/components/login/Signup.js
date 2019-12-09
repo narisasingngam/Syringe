@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './../../styles/login.css'
 import { Link } from 'react-router-dom';
-
+import Navbar from './../Navbar'
 import userIcon from './../../images/icons_Add_User.png'
 
 export class UserSignUp extends Component {
@@ -21,6 +21,7 @@ export class UserSignUp extends Component {
         var userSignUp = this
         request.onreadystatechange = function() {
             if (request.readyState === XMLHttpRequest.DONE){
+                alert("User sign up success")
                 userSignUp.props.history.push('/login/user');
             }
         }
@@ -35,7 +36,6 @@ export class UserSignUp extends Component {
 
         request.send(JSON.stringify(data))
         
-        
         }else{
             alert("Invalid Sign Up")
         }
@@ -44,6 +44,7 @@ export class UserSignUp extends Component {
     }
     render() {
         return (
+            <div><Navbar value="login"/>
             <div class="login-container bg-white shadow al-center">
                 <img src={userIcon}  alt="user icon"/>
                 <h1 class="loginH1">Account Sign Up</h1>
@@ -66,6 +67,7 @@ export class UserSignUp extends Component {
                     <input class="login-submit" type="submit" name="sign-in" value="Confirm"/>
                     <Link to="/login/user"><button class="cancel-signup" >Cancel</button></Link>
                 </form>
+            </div>
             </div>
         )
     }
