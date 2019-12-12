@@ -3,6 +3,11 @@ import './../styles/userInput.css'
 import userIcon from './../images/icons_User.png'
 
 export class UserInput extends Component {
+
+    clickAdd(){
+        console.log("mint click")
+    }
+
     render() {
         return (
             <div className="container">
@@ -16,7 +21,7 @@ export class UserInput extends Component {
                         Please insert your insurace
                     </div>
                     <div>
-                    <i class="far fa-plus-circle"></i>
+                        <i class="fas fa-plus-circle" onClick={() => this.clickAdd()}></i>
                     </div>
                 </div>
             </div>
