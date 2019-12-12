@@ -86,3 +86,8 @@
 .mi{
     display: flex;
 }
+
+.scroll-list-insu{
+    overflow: scroll;
+    height: 208px;
+}

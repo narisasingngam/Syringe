@@ -56,11 +56,17 @@ export class UserInput extends Component {
 
         if (event.target.value === "") {
             this.setState({ companyName: event.target.value, companyValue: event.target.value, searchCompany: [] })
+        } else {
+            this.setState({ programName: "", programValue: "", searchProgram: [] })
         }
     }
 
     setProgram = (event) => {
         // console.log(this.state.listProgram)
+        if (this.state.companyValue === "") {
+            alert("Please insert your insurance company first")
+            return;
+        }
         const filterValues = (name) => {
             return this.state.listProgram.filter(data => {
                 return data.program_name.toLowerCase().indexOf(name.toLowerCase()) > -1;
@@ -80,7 +86,7 @@ export class UserInput extends Component {
     }
 
     clickCompany(company_name) {
-        this.setState({ companyName: company_name, companyValue: company_name })
+        this.setState({ companyName: company_name, companyValue: company_name, searchCompany: [] })
         axios.post('https://insuranceapii.herokuapp.com/company/search', { company: company_name })
             .then(res => {
                 this.setState({ listProgram: res.data })
@@ -88,10 +94,27 @@ export class UserInput extends Component {
             })
     }
 
-    clickSave(){
-        
+    clickSave() {
+        if (this.state.usersInsurance.length <= 0) {
+            alert('Please insert your insurance')
+            return;
+        }
+        this.state.usersInsurance.map((item, key) =>
+            axios.post('https://insuranceapii.herokuapp.com/user/addinsurance', { id: 1100234567811, name: 'Peppermint Patty', birthdate: '1950-08-16', program: item.programName, company: item.companyName })
+                .then(res => {
+                    alert('Input success')
+                    console.log(key)
+                })
+                .catch(error => { console.log('error') })
+        )
+
+
     }
-    
+
+    clickProgram(program_name) {
+        this.setState({ programName: program_name, programValue: program_name, searchProgram: [] })
+    }
+
     render() {
 
         const insuranceItem = this.state.usersInsurance.map((item, key) =>
@@ -108,10 +131,9 @@ export class UserInput extends Component {
         )
 
         const itemsProgram = this.state.searchProgram.map((item, key) =>
-            <button className="company-btn" key={item.id} onClick={() => this.setState({ programName: item.program_name, programValue: item.program_name })}> {item.program_name}</ button>
+            <button className="company-btn" key={item.id} onClick={() => this.clickProgram(item.program_name)}> {item.program_name}</ button>
         )
 
-        console.log(this.state.usersInsurance)
         return (
             <div className="container">
                 <div className="user-box">
@@ -153,8 +175,12 @@ export class UserInput extends Component {
                         </div>
 
                     </div>
-                    {insuranceItem}
-                    <Button variant="primary" size="sm" className="save-insu" onClick={() => this.clickSave()}>Save</Button>
+                    <div className="scroll-list-insu">
+                        {insuranceItem}
+                    </div>
+                    <div>
+                        <Button variant="primary" size="sm" className="save-insu" onClick={() => this.clickSave()}>Save</Button>
+                    </div>
                 </div>
             </div>
         )
