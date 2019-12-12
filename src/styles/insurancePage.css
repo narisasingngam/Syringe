@@ -91,6 +91,10 @@
 .scroll{
     height: 50px;
     overflow: scroll !important;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    width: 70%;
+    margin-left: 95px;
 }
 
 .selected-insure{
