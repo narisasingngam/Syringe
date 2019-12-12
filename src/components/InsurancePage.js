@@ -16,6 +16,7 @@ export class InsurancePage extends Component {
             setInput: "",
             setDate: "",
             userSelectedInsurance: [],
+            currentInsurance: [],
             apiDisease: [],
             searchDisease: [],
             valueDiseaseInput: "",
@@ -29,7 +30,7 @@ export class InsurancePage extends Component {
     callApi() {
         axios.get('https://insuranceapii.herokuapp.com/disease')
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({ apiDisease: res.data })
             })
     }
@@ -52,7 +53,7 @@ export class InsurancePage extends Component {
     submitID() {
         axios.post('https://insuranceapii.herokuapp.com/user/details', { id: this.state.setInput })
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 this.setState({ patientDetail: res.data })
             })
             .then(res => {
@@ -68,25 +69,22 @@ export class InsurancePage extends Component {
     }
 
     removeInsurance(key) {
-        console.log(this.state.userSelectedInsurance[key])
-        const removeInsurance = this.state.userSelectedInsurance.splice(key)
-        this.setState({userSelectedInsurance: removeInsurance})
-        
+        this.state.userSelectedInsurance.splice(key,1)
+        this.setState({currentInsurance: this.state.userSelectedInsurance})
     }
 
         
     clickDisease(symtomp) {
+        console.log("clickDisease")
         this.setState({ searchDisease: [], valueDiseaseInput: symtomp })
 
-        axios.post('https://insuranceapii.herokuapp.com/user/details/disease',{id: this.state.patientDetail[0].personal_id, disease: symtomp })
+        axios.post('http://localhost:8000/user/details/disease',{id: this.state.patientDetail[0].personal_id, disease: symtomp })
             .then(res => {
                 console.log(res.data)
                 this.setState({ patientDetail: res.data })
             })
             .catch(error => {console.log('error')})
-
-        console.log(symtomp)
-
+        // console.log(symtomp)
     }
 
     searchInsurance() {
@@ -97,12 +95,13 @@ export class InsurancePage extends Component {
         const items = this.state.searchDisease.map((item, key) =>
             <button className="disease-btn" key={item.id} onClick={() => this.clickDisease(item.symtomp)}>{item.symtomp}</button>
         )
-        console.log(this.state.userSelectedInsurance)
+        // console.log(this.state.userSelectedInsurance)
         const userInsurance = this.state.userSelectedInsurance.map((item, key) =>
         <h5 className="selected-insure">{item.companyName}({item.programName})
-            <button  className="select-btn" onClick={() => this.removeInsurance(key+1)}>-</button>
+            <button  className="select-btn" onClick={() => this.removeInsurance(key)}>-</button>
         </h5>
         )
+        console.log(this.state.patientDetail)
         return (
             <div className="container">
                 <div className="insu-page">
@@ -142,7 +141,7 @@ export class InsurancePage extends Component {
                     </div>
                     <div className="user-status">
                         <h5 className="insure-text">Patient Insurance</h5>
-                        <PatientInsurance insuranceDetail={this.state.patientDetail} selectedInsurance={v => this.setState({ userSelectedInsurance: v })} />
+                        <PatientInsurance insuranceDetail={this.state.patientDetail} selectedInsurance={v => this.setState({ userSelectedInsurance: v })} currentInsurance={this.state.currentInsurance}/>
                     </div>
                 </div>
                 <footer class="footer" style={this.state.enabledOrder ? {} : { display: 'none' }} >
@@ -150,7 +149,6 @@ export class InsurancePage extends Component {
                         <i class="far fa-check-circle fa-2x "></i>
                         <i class="far fa-times-circle fa-2x "></i>
                     </div>
-
                     <h6>
                         Patient Insurance approve!
                     </h6>
