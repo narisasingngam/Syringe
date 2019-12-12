@@ -21,6 +21,8 @@ export class InsurancePage extends Component {
             searchDisease: [],
             valueDiseaseInput: "",
             enabledOrder: false,
+            totalCost: "",
+            isDisabled: true
         }
 
         this.callApi()
@@ -47,6 +49,15 @@ export class InsurancePage extends Component {
             this.setState({ searchDisease: [], submitDiseaseValue: "" });
         } else {
             this.setState({ searchDisease: filterValues(event.target.value) });
+        }
+    }
+
+    handleInputCost = (event) => {
+        if(event.target.value === ""){
+            this.setState({ isDisabled: true })
+        }else{
+            this.setState({ totalCost: event.target.value})
+            this.setState({ isDisabled: false })
         }
     }
 
@@ -124,7 +135,7 @@ export class InsurancePage extends Component {
                                         onChange={this.handleInputDisease}
                                         value={this.state.valueDiseaseInput}
                                     />
-                                    <input
+                                    <input onChange={this.handleInputCost}
                                         className="input-disease"
                                         placeholder="type cost"
                                     />
@@ -141,7 +152,7 @@ export class InsurancePage extends Component {
                     </div>
                     <div className="user-status">
                         <h5 className="insure-text">Patient Insurance</h5>
-                        <PatientInsurance insuranceDetail={this.state.patientDetail} selectedInsurance={v => this.setState({ userSelectedInsurance: v })} currentInsurance={this.state.currentInsurance}/>
+                        <PatientInsurance insuranceDetail={this.state.patientDetail} selectedInsurance={v => this.setState({ userSelectedInsurance: v })} currentInsurance={this.state.currentInsurance} disabled={this.state.isDisabled}/>
                     </div>
                 </div>
                 <footer class="footer" style={this.state.enabledOrder ? {} : { display: 'none' }} >
