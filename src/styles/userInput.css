@@ -11,13 +11,78 @@
     font-weight: bold;
 }
 
-
-.name-user{
-    margin-right: 20px;
-}
-.pass-user{
-    flex: 3;
+.longdo{
+    margin: 10px 10px 10px 10px;
 }
 
 
+.input-users{
+    margin: 10px 10px 0 10px;
+}
 
+.submit-user-insu{
+    margin-bottom: 5px
+}
+
+.card-body {
+    padding: 0.5rem !important;
+}
+
+.card {
+    max-width: 369px !important;
+    margin-left: 25px !important;
+    margin-top: 10px !important;
+}
+.list-insu{
+   position: relative;
+}
+.fa-minus-circle{
+    cursor: pointer;
+    margin-right: 10px;
+    color : #E74C3C !important;
+}
+
+.save-insu{
+    margin:10px 0 0 24px;
+}
+
+.company-btn{
+    width: 171px;
+    color: black;
+    border-color: lightgray !important;
+    background-color: white !important;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: 5px 5px 5px 5px;
+    display: flex;
+    font-size: 15px;
+  }
+  
+  .company-btn:hover{
+    background: darkcyan !important;
+    border-color: darkcyan !important;
+    color: white;
+    /* -webkit-box-shadow: 0px 0px 5px black; */
+    /* box-shadow: 0px 0px 5px black; */
+  }
+
+  .company-layout{
+      margin-left: 25px;
+      width: 180px;
+      position: relative;
+      height: 34px;
+      overflow: scroll;
+  }
+  
+.program-layout{
+      margin-left: 14px;
+      width: 180px;
+      position: relative;
+      height: 34px;
+      overflow: scroll;
+}
+.mi{
+    display: flex;
+}
