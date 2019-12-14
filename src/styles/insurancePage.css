@@ -70,6 +70,18 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
 }
 
+.submit-id:disabled{
+    color: white;
+    background:  rgb(0, 139, 139,0.6);
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-top: 15px;
+    margin-left: 45px;
+    border-color: rgb(0, 139, 139,0.6);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
 .input-disease{
     font-size: 15px;
     margin-bottom: 20px;
@@ -113,6 +125,17 @@
     display: flex;
     font-size: 15px;
   }
+
+  .save-btn{
+    color: white;
+    background: darkcyan;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: 15px;
+    border-color: darkcyan;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+  }
   
   .disease-btn:hover{
     background: darkcyan !important;
@@ -139,6 +162,10 @@
       margin-bottom: 20px;
   }
 
-.icon-check {
+  .approve-text{
+    font-weight: bold;
+  }
+
+  .icon-check {
     color: cadetblue;
   }

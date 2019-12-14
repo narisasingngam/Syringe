@@ -2,36 +2,33 @@ import React, { Component } from 'react'
 import { Table } from 'react-bootstrap'
 
 export class TableResult extends Component {
+    constructor(props){
+        super(props)
+    }
+
     render() {
+        const detail = this.props.selectedInsurance.map((item,key)=>
+            <tr>
+                <th scope="row">{key+1}</th>
+                <td>{item.companyName}</td>
+                <td>{item.programName}</td>
+                <td>{item.coverExpense}</td>
+            </tr>
+        )
+
         return (
             <div>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>Insurance details</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th scope="col">No.</th>
+                            <th scope="col">Company Name</th>
+                            <th scope="col">Program Name</th>
+                            <th scope="col">Covered Expense</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td colSpan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {detail}
                     </tbody>
                 </Table>
             </div>
