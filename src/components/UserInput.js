@@ -8,6 +8,7 @@ import axios from 'axios';
 import ShowInsuranceDetail from './../components/ShowInsuranceDetail'
 import UserHistory from './../components/UserHistory'
 import UserPaymentHistory from './../components/UserPaymentHistory'
+import { Redirect } from 'react-router-dom'
 
 export class UserInput extends Component {
 
@@ -26,6 +27,8 @@ export class UserInput extends Component {
             searchProgram: []
         }
         this.callApi()
+        
+        this.cookied = cookie.load('name')
     }
 
     callApi() {
@@ -137,6 +140,11 @@ export class UserInput extends Component {
             <button className="company-btn" key={item.id} onClick={() => this.clickProgram(item.program_name)}> {item.program_name}</ button>
         )
 
+        if (this.cookied === '' ){
+            return <Redirect to='/login/user' />
+        }else if(this.cookied === 'admin'){
+            return <Redirect to='/admin' />
+        }else{
         return (
             <div>
                 <Navbar value={cookie.load('name')}/>
@@ -203,6 +211,7 @@ export class UserInput extends Component {
             </div>
             </div>
         )
+        }
     }
 }
 

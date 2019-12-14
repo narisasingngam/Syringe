@@ -3,11 +3,12 @@ import './../../styles/login.css'
 import { Link } from 'react-router-dom';
 import Navbar from './../Navbar'
 import userIcon from './../../images/icons_Add_User.png'
+import cookie from 'react-cookies'
 
 export class UserSignUp extends Component {
     constructor(props) {
         super(props);
-
+        cookie.save('name', "", { path: '/' })
         this.handleSignUp = this.handleSignUp.bind(this);
       }
 

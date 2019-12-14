@@ -8,7 +8,7 @@ import Navbar from './../Navbar'
 export class AdminLogin extends Component {
     constructor(props) {
         super(props);
-        
+        cookie.save('name', "", { path: '/' })
         this.handleSignUp = this.handleSignUp.bind(this);
       }
 
@@ -19,7 +19,7 @@ export class AdminLogin extends Component {
             if(this.refs.username.value === "admin" && this.refs.password.value === "admin"){
                 cookie.save('name', "admin", { path: '/' })
                 alert("Adnmin login success")
-                this.props.history.push('/');
+                this.props.history.push('/admin');
             }else
                 alert("Wrong Username or Password")
         }

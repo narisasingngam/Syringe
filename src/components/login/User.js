@@ -9,7 +9,7 @@ export class UserLogin extends Component {
     constructor(props) {
         super(props);
 
-       
+        cookie.save('name', "", { path: '/' })
         this.handleLogin = this.handleLogin.bind(this);
       }
        
