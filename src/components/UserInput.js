@@ -3,6 +3,8 @@ import './../styles/userInput.css'
 import userIcon from './../images/icons_User.png'
 import { Button, Card } from 'react-bootstrap'
 import axios from 'axios';
+import ShowInsuranceDetail from './../components/ShowInsuranceDetail'
+import UserHistory from './../components/UserHistory'
 
 export class UserInput extends Component {
 
@@ -136,51 +138,64 @@ export class UserInput extends Component {
 
         return (
             <div className="container">
-                <div className="user-box">
-                    <div className="id-text-user">
-                        <img src={userIcon} alt="user icon" />
-                        <div className="longdo">
-                            <div className="text-user-profile">Name: Papermint Patty</div>
-                            <div className="text-user-profile">ID: 1100234567811</div>
-                            <div className="text-user-profile">Age: 69</div>
+                <div style={{ display: 'flex' }}>
+                    <div className="user-box">
+                        <div className="id-text-user">
+                            <img src={userIcon} alt="user icon" />
+                            <div className="longdo">
+                                <div className="text-user-profile">Name: Papermint Patty</div>
+                                <div className="text-user-profile">ID: 1100234567811</div>
+                                <div className="text-user-profile">Age: 69</div>
+                            </div>
+                        </div>
+                        <div>
+                            Please insert your insurace
+                    </div>
+                        <div>
+                            <i class="fas fa-plus-circle"></i>
+
+                            <input
+                                className="input-users"
+                                placeholder="insurance company"
+                                onChange={this.setCompany}
+                                value={this.state.companyValue}
+                            />
+
+                            <input
+                                className="input-users"
+                                placeholder="insurance program"
+                                onChange={this.setProgram}
+                                value={this.state.programValue}
+                            />
+                            <Button variant="success" size="sm" className="submit-user-insu" onClick={() => this.clickAdd()}>Submit</Button>
+                        </div>
+                        <div className="mi">
+                            <div className="company-layout">
+                                {itemsCompany}
+                            </div>
+                            <div className="program-layout">
+                                {itemsProgram}
+                            </div>
+
+                        </div>
+                        <div className="scroll-list-insu">
+                            {insuranceItem}
+                        </div>
+                        <div>
+                            <Button variant="primary" size="sm" className="save-insu" onClick={() => this.clickSave()}>Save</Button>
                         </div>
                     </div>
-                    <div>
-                        Please insert your insurace
+                    <div className="information-insurance">
+                        <ShowInsuranceDetail />
                     </div>
-                    <div>
-                        <i class="fas fa-plus-circle"></i>
-
-                        <input
-                            className="input-users"
-                            placeholder="insurance company"
-                            onChange={this.setCompany}
-                            value={this.state.companyValue}
-                        />
-
-                        <input
-                            className="input-users"
-                            placeholder="insurance program"
-                            onChange={this.setProgram}
-                            value={this.state.programValue}
-                        />
-                        <Button variant="success" size="sm" className="submit-user-insu" onClick={() => this.clickAdd()}>Submit</Button>
+                </div>
+                <div style={{ display: 'flex' }}>
+                    <div className="user-history">
+                        <UserHistory id={'1100234567811'} />
                     </div>
-                    <div className="mi">
-                        <div className="company-layout">
-                            {itemsCompany}
-                        </div>
-                        <div className="program-layout">
-                            {itemsProgram}
-                        </div>
-
-                    </div>
-                    <div className="scroll-list-insu">
-                        {insuranceItem}
-                    </div>
-                    <div>
-                        <Button variant="primary" size="sm" className="save-insu" onClick={() => this.clickSave()}>Save</Button>
-                    </div>
+                    <div className="user-approve">
+                        
+                </div>
                 </div>
             </div>
         )
