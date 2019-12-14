@@ -128,12 +128,12 @@
 
   .save-btn{
     color: white;
-    background: darkcyan;
+    background: rgb(41, 91, 184);
     font-weight: bold;
     font-size: 14px;
     border-radius: 6px;
     margin: 15px;
-    border-color: darkcyan;
+    border-color:rgb(41, 91, 184);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
   }
   

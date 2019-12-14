@@ -3,6 +3,7 @@ import './../styles/insurancePage.css'
 import axios from 'axios';
 import PatientInsurance from './PatientInsurance'
 import TableResult from './TableResult'
+import { Link } from 'react-router-dom';
 
 export class InsurancePage extends Component {
 
@@ -27,16 +28,16 @@ export class InsurancePage extends Component {
             searchDisabled: true,
             paymentDetail: [{
                 personal_id: "",
-                user_name:"",
-                user_age:"",
-                Insurance_company:"",
-                Insurance_program:"",
-                disease:"",
-                covered_expense:"",
-                payment_cost:""
+                user_name: "",
+                user_age: "",
+                Insurance_company: "",
+                Insurance_program: "",
+                disease: "",
+                covered_expense: "",
+                payment_cost: ""
             }],
-            yearInput:"",
-            userAge:""
+            yearInput: "",
+            userAge: ""
         }
         this.callApi()
     }
@@ -65,10 +66,10 @@ export class InsurancePage extends Component {
     }
 
     handleInputCost = (event) => {
-        this.setState({ totalCost: event.target.value})
-        if(event.target.value === ""){
+        this.setState({ totalCost: event.target.value })
+        if (event.target.value === "") {
             this.setState({ isDisabled: true })
-        }else{
+        } else {
             this.setState({ isDisabled: false })
         }
 
@@ -92,9 +93,9 @@ export class InsurancePage extends Component {
             .then(res => this.calculateAge())
     }
 
-    calculateAge(){
+    calculateAge() {
         const currentYear = new Date().getFullYear()
-        this.setState({ userAge: currentYear - this.state.yearInput})
+        this.setState({ userAge: currentYear - this.state.yearInput })
     }
 
     inputID = (event) => {
@@ -102,37 +103,39 @@ export class InsurancePage extends Component {
     }
 
     removeInsurance(key) {
-        this.state.userSelectedInsurance.splice(key,1)
-        this.setState({currentInsurance: this.state.userSelectedInsurance})
+        this.state.userSelectedInsurance.splice(key, 1)
+        this.setState({ currentInsurance: this.state.userSelectedInsurance })
         this.checkCost(this.state.totalCost)
     }
 
-    checkCost(cost){
+    checkCost(cost) {
         let allCoverExpense = 0;
-        this.state.userSelectedInsurance.forEach( e => {
+        this.state.userSelectedInsurance.forEach(e => {
             allCoverExpense = allCoverExpense + parseInt(e.coverExpense);
         });
-        console.log("1allCoverExpense"+allCoverExpense)
-        console.log("1totalCost"+cost)
-        if(allCoverExpense < cost){
-            this.setState({searchDisabled:true})
-        }else{
-            this.setState({searchDisabled:false})
+        console.log("1allCoverExpense" + allCoverExpense)
+        console.log("1totalCost" + cost)
+        if (allCoverExpense < cost) {
+            this.setState({ searchDisabled: true })
+        } else {
+            this.setState({ searchDisabled: false })
         }
     }
 
 
-    clickSave(){
+    clickSave() {
         this.state.userSelectedInsurance.map((item, key) =>
-            axios.post('https://insuranceapii.herokuapp.com/user/add/history', 
-            { id: this.state.setInput,
-             name: this.state.nameInput,
-             age: this.state.userAge,
-             company: item.companyName,
-             program: item.programName,
-             disease: this.state.valueDiseaseInput,
-             covered_expense: item.coverExpense,
-             payment: this.state.totalCost })
+            axios.post('https://insuranceapii.herokuapp.com/user/add/history',
+                {
+                    id: this.state.setInput,
+                    name: this.state.nameInput,
+                    age: this.state.userAge,
+                    company: item.companyName,
+                    program: item.programName,
+                    disease: this.state.valueDiseaseInput,
+                    covered_expense: item.coverExpense,
+                    payment: this.state.totalCost
+                })
                 .then(res => {
                     alert('Input success')
                     console.log(key)
@@ -141,17 +144,17 @@ export class InsurancePage extends Component {
                 .then(res => window.location.reload())
         )
     }
-        
+
     clickDisease(symtomp) {
         console.log("clickDisease")
         this.setState({ searchDisease: [], valueDiseaseInput: symtomp })
 
-        axios.post('https://insuranceapii.herokuapp.com/user/details/disease',{id: this.state.patientDetail[0].personal_id, disease: symtomp })
+        axios.post('https://insuranceapii.herokuapp.com/user/details/disease', { id: this.state.patientDetail[0].personal_id, disease: symtomp })
             .then(res => {
                 console.log(res.data)
                 this.setState({ patientDetail: res.data })
             })
-            .catch(error => {console.log('error')})
+            .catch(error => { console.log('error') })
         // console.log(symtomp)
     }
 
@@ -165,20 +168,21 @@ export class InsurancePage extends Component {
         )
         // console.log(this.state.userSelectedInsurance)
         const userInsurance = this.state.userSelectedInsurance.map((item, key) =>
-        <h5 className="selected-insure">{item.companyName}({item.programName})
-            <button  className="select-btn" onClick={() => this.removeInsurance(key)}>-</button>
-        </h5>
+            <h5 className="selected-insure">{item.companyName}({item.programName})
+            <button className="select-btn" onClick={() => this.removeInsurance(key)}>-</button>
+            </h5>
         )
         console.log(this.state.patientDetail)
         return (
             <div className="container">
+                <Link to="/hospitalHistory">History</Link>
                 <div className="insu-page">
                     <div className="user-input">
                         <div className="input-pat-details">
                             <h5>Patient details</h5>
                             <input
                                 className="input-id"
-                                placeholder="Please insert patient's ID card"
+                                placeholder="Insert patient's ID card"
                                 onChange={this.inputID}
                             />
                             <button className="submit-id" onClick={() => this.submitID()}>Enter</button>
@@ -188,13 +192,13 @@ export class InsurancePage extends Component {
                                 <div>
                                     <input
                                         className="input-disease"
-                                        placeholder="Please insert patient disease"
+                                        placeholder="Insert patient disease"
                                         onChange={this.handleInputDisease}
                                         value={this.state.valueDiseaseInput}
                                     />
                                     <input onChange={this.handleInputCost}
                                         className="input-disease"
-                                        placeholder="Please insert payment cost"
+                                        placeholder="Insert payment cost"
                                     />
                                 </div>
                                 <div className="item-disease">
@@ -209,12 +213,12 @@ export class InsurancePage extends Component {
                     </div>
                     <div className="user-status">
                         <h5 className="insure-text">Patient Insurance</h5>
-                        <PatientInsurance insuranceDetail={this.state.patientDetail} 
-                        selectedInsurance={v => this.setState({ userSelectedInsurance: v })} 
-                        currentInsurance={this.state.currentInsurance} 
-                        disabled={this.state.isDisabled} 
-                        searchDisabled={v => this.setState({searchDisabled: v})}
-                        totalCost={this.state.totalCost}/>
+                        <PatientInsurance insuranceDetail={this.state.patientDetail}
+                            selectedInsurance={v => this.setState({ userSelectedInsurance: v })}
+                            currentInsurance={this.state.currentInsurance}
+                            disabled={this.state.isDisabled}
+                            searchDisabled={v => this.setState({ searchDisabled: v })}
+                            totalCost={this.state.totalCost} />
                     </div>
                 </div>
                 <footer class="footer" style={this.state.enabledOrder ? {} : { display: 'none' }} >
@@ -231,8 +235,8 @@ export class InsurancePage extends Component {
                     <h6>Disease: {this.state.valueDiseaseInput}</h6>
                     <h6>Payment Cost: THB{this.state.totalCost}</h6>
                     <br></br>
-                    <TableResult selectedInsurance={this.state.userSelectedInsurance}/>
-                    <button className="save-btn" onClick={()=>this.clickSave()}>Save</button>
+                    <TableResult selectedInsurance={this.state.userSelectedInsurance} />
+                    <button className="save-btn" onClick={() => this.clickSave()}>Save</button>
                 </footer>
             </div>
         )

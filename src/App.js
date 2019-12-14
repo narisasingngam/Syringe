@@ -7,6 +7,7 @@ import AdminLogin from './components/login/Admin'
 import UserLogin from './components/login/User'
 import { Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HospitalPaymentHistory from './components/HospitalPaymentHistory'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/admin" component={Insurance}></Route>
           <Route path="/login/admin" component={AdminLogin}></Route>
           <Route path="/login/user" component={UserLogin}></Route>
+          <Route path="/hospitalHistory" component={HospitalPaymentHistory}></Route>
         </Switch>
       </React.Fragment>
       
