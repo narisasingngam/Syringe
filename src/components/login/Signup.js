@@ -32,7 +32,8 @@ export class UserSignUp extends Component {
         var data = {
             "id": id,
             "name":  this.refs.name.value,
-            "password": this.refs.password.value
+            "password": this.refs.password.value,
+            "birthdate": this.refs.date.value
         }
 
         request.send(JSON.stringify(data))
@@ -62,6 +63,10 @@ export class UserSignUp extends Component {
 
                             <label for="psw"><b>Password</b></label>
 			                <input class="mg-buttom-default login-input" ref='password'  type="password" placeholder="Password" name="password" required/>
+                        
+                            <label for="psw"><b>Date of Birth</b></label>
+			                <input class="mg-buttom-default login-input" ref='date'  type="date" name="birthdate" required/>
+                        
                         </div>
 	                </div>
 

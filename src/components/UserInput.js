@@ -25,7 +25,12 @@ export class UserInput extends Component {
             searchCompany: [],
             listProgram: [],
             searchProgram: [],
-            userDetail: null
+            userDetail: {
+                id : "",
+                name : "",
+                birth_date: new Date(),
+                age: 0
+            }
         }
         this.callApi()
 
@@ -34,12 +39,25 @@ export class UserInput extends Component {
         
     }
     userDetail(){
-        console.log(this.cookied)
-        axios.post("https://insuranceapii.herokuapp.com/user/details",{
-            'id': this.cookied
-        }).then(res => {
-            this.setState({userDetail: res.data[0]})
-            console.log(this.state.userDetail.date_of_birth)
+        let userId = this.cookied
+        axios.post("https://insuranceapii.herokuapp.com/user/allaccount")
+        .then(res => {
+            
+            res.forEach(element => {
+                if(userId === element.id){
+                    this.setState({
+                        userDetail:{
+                            id : userId,
+                            name: element.name,
+                            birth_date: element.birthdate,
+                            age: (new Date()).getFullYear() - (new Date(element.birthdate)).getFullYear()
+                        }
+                    })
+                }
+            });
+
+            
+
         });
     }
 
@@ -120,7 +138,7 @@ export class UserInput extends Component {
             return;
         }
         this.state.usersInsurance.map((item, key) =>
-            axios.post('https://insuranceapii.herokuapp.com/user/addinsurance', { id: 1100234567811, name: 'Peppermint Patty', birthdate: '1950-08-16', program: item.programName, company: item.companyName })
+            axios.post('https://insuranceapii.herokuapp.com/user/addinsurance', { id: this.state.userDetail.id, name: this.userDetail.name, birthdate: this.userDetail.birth_date, program: item.programName, company: item.companyName })
                 .then(res => {
                     alert('Input success')
                     console.log(key)
@@ -172,18 +190,11 @@ export class UserInput extends Component {
                             Name: {this.state.userDetail.name}
                           </div>
                           <div className="text-user-profile">
-                            ID: {this.state.userDetail.personal_id}
+                            ID: {this.state.userDetail.id}
                           </div>
-                          {this.state.userDetail.date_of_birth && (
                             <div className="text-user-profile">
-                              Age:{" "}
-                              {new Date().getFullYear() -
-                                new Date(
-                                  this.state.userDetail.date_of_birth
-                                ).getFullYear()}{" "}
-                              years
+                              Age: {this.state.userDetail.age} years
                             </div>
-                          )}
                         </Fragment>
                       )}
                     </div>
