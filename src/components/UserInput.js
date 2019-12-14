@@ -5,6 +5,7 @@ import { Button, Card } from 'react-bootstrap'
 import axios from 'axios';
 import ShowInsuranceDetail from './../components/ShowInsuranceDetail'
 import UserHistory from './../components/UserHistory'
+import UserPaymentHistory from './../components/UserPaymentHistory'
 
 export class UserInput extends Component {
 
@@ -109,8 +110,6 @@ export class UserInput extends Component {
                 })
                 .catch(error => { console.log('error') })
         )
-
-
     }
 
     clickProgram(program_name) {
@@ -194,8 +193,8 @@ export class UserInput extends Component {
                         <UserHistory id={'1100234567811'} />
                     </div>
                     <div className="user-approve">
-                        
-                </div>
+                        <UserPaymentHistory id={'1100234567811'}/>
+                    </div>
                 </div>
             </div>
         )

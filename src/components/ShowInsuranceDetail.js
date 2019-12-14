@@ -15,7 +15,6 @@ export class ShowInsuranceDetail extends Component {
     callAPI() {
         axios.get('https://insuranceapii.herokuapp.com/health/')
             .then(res => {
-                console.log(res.data)
                 this.setState({ informationdata: res.data })
             })
     }

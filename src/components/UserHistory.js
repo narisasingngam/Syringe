@@ -33,7 +33,7 @@ export class UserHistory extends Component {
         return (
             <div>
                 <div>Existing Insurance</div>
-                <div className="scoll-card">
+                <div className="scroll-card">
                 {card}
                 </div>
             </div>

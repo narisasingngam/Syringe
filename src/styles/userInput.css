@@ -119,9 +119,9 @@
     font-weight: bold;
 }
 
-.scoll-card{
-    overflow: scoll;
-    height: 348px;
+.scroll-card{
+    overflow: scroll;
+    height: 300px;
 }
 
 .user-approve{
