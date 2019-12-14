@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Navbar from './Navbar'
 import cookie from 'react-cookies'
 import './../styles/userInput.css'
@@ -24,11 +24,23 @@ export class UserInput extends Component {
             listCompany: [],
             searchCompany: [],
             listProgram: [],
-            searchProgram: []
+            searchProgram: [],
+            userDetail: null
         }
         this.callApi()
+
+        this.cookied = cookie.load("name");
+        this.userDetail()
         
-        this.cookied = cookie.load('name')
+    }
+    userDetail(){
+        console.log(this.cookied)
+        axios.post("https://insuranceapii.herokuapp.com/user/details",{
+            'id': this.cookied
+        }).then(res => {
+            this.setState({userDetail: res.data[0]})
+            console.log(this.state.userDetail.date_of_birth)
+        });
     }
 
     callApi() {
@@ -146,71 +158,93 @@ export class UserInput extends Component {
             return <Redirect to='/admin' />
         }else{
         return (
-            <div>
-                <Navbar value={cookie.load('name')}/>
+          <div>
+            <Navbar value={cookie.load("name")} />
             <div className="container">
-                <div style={{ display: 'flex' }}>
-                    <div className="user-box">
-                        <div className="id-text-user">
-                            <img src={userIcon} alt="user icon" />
-                            <div className="longdo">
-                                <div className="text-user-profile">Name: Papermint Patty</div>
-                                <div className="text-user-profile">ID: 1100234567811</div>
-                                <div className="text-user-profile">Age: 69</div>
+              <div style={{ display: "flex" }}>
+                <div className="user-box">
+                  <div className="id-text-user">
+                    <img src={userIcon} alt="user icon" />
+                    <div className="longdo">
+                      {this.state.userDetail && (
+                        <Fragment>
+                          <div className="text-user-profile">
+                            Name: {this.state.userDetail.name}
+                          </div>
+                          <div className="text-user-profile">
+                            ID: {this.state.userDetail.personal_id}
+                          </div>
+                          {this.state.userDetail.date_of_birth && (
+                            <div className="text-user-profile">
+                              Age:{" "}
+                              {new Date().getFullYear() -
+                                new Date(
+                                  this.state.userDetail.date_of_birth
+                                ).getFullYear()}{" "}
+                              years
                             </div>
-                        </div>
-                        <div>
-                            Please insert your insurace
+                          )}
+                        </Fragment>
+                      )}
                     </div>
-                        <div>
-                            <i class="fas fa-plus-circle"></i>
+                  </div>
+                  <div>Please insert your insurace</div>
+                  <div>
+                    <i class="fas fa-plus-circle"></i>
 
-                            <input
-                                className="input-users"
-                                placeholder="insurance company"
-                                onChange={this.setCompany}
-                                value={this.state.companyValue}
-                            />
+                    <input
+                      className="input-users"
+                      placeholder="insurance company"
+                      onChange={this.setCompany}
+                      value={this.state.companyValue}
+                    />
 
-                            <input
-                                className="input-users"
-                                placeholder="insurance program"
-                                onChange={this.setProgram}
-                                value={this.state.programValue}
-                            />
-                            <Button variant="success" size="sm" className="submit-user-insu" onClick={() => this.clickAdd()}>Submit</Button>
-                        </div>
-                        <div className="mi">
-                            <div className="company-layout">
-                                {itemsCompany}
-                            </div>
-                            <div className="program-layout">
-                                {itemsProgram}
-                            </div>
-
-                        </div>
-                        <div className="scroll-list-insu">
-                            {insuranceItem}
-                        </div>
-                        <div>
-                            <Button variant="primary" size="sm" className="save-insu" onClick={() => this.clickSave()}>Save</Button>
-                        </div>
-                    </div>
-                    <div className="information-insurance">
-                        <ShowInsuranceDetail />
-                    </div>
+                    <input
+                      className="input-users"
+                      placeholder="insurance program"
+                      onChange={this.setProgram}
+                      value={this.state.programValue}
+                    />
+                    <Button
+                      variant="success"
+                      size="sm"
+                      className="submit-user-insu"
+                      onClick={() => this.clickAdd()}
+                    >
+                      Submit
+                    </Button>
+                  </div>
+                  <div className="mi">
+                    <div className="company-layout">{itemsCompany}</div>
+                    <div className="program-layout">{itemsProgram}</div>
+                  </div>
+                  <div className="scroll-list-insu">{insuranceItem}</div>
+                  <div>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      className="save-insu"
+                      onClick={() => this.clickSave()}
+                    >
+                      Save
+                    </Button>
+                  </div>
                 </div>
-                <div style={{ display: 'flex' }}>
-                    <div className="user-history">
-                        <UserHistory id={'1100234567811'} />
-                    </div>
-                    <div className="user-approve">
-                        <UserPaymentHistory id={'1100234567811'}/>
-                    </div>
+                <div className="information-insurance">
+                  <ShowInsuranceDetail />
                 </div>
+              </div>
+              <div style={{ display: "flex" }}>
+                <div className="user-history">
+                  <UserHistory id={"1100234567811"} />
+                </div>
+                <div className="user-approve">
+                  <UserPaymentHistory id={"1100234567811"} />
+                </div>
+              </div>
             </div>
-            </div>
-        )
+          </div>
+        );
         }
     }
 }
