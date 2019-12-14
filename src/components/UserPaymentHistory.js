@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Accordion, Card, Button } from 'react-bootstrap'
 import { Table } from 'react-bootstrap'
+import './../styles/userInput.css'
 
 export class UserPaymentHistory extends Component {
 
@@ -43,7 +43,7 @@ export class UserPaymentHistory extends Component {
         )
 
         return (
-            <div>
+            <div className="table-histrory">
                 <Table responsive>
                     <thead>
                         <tr>
