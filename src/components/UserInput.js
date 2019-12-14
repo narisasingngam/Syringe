@@ -24,6 +24,7 @@ export class UserInput extends Component {
             searchProgram: []
         }
         this.callApi()
+        this.checkInsurance = this.checkInsurance.bind(this)
     }
 
     callApi() {
@@ -38,6 +39,12 @@ export class UserInput extends Component {
             alert('Please insert your insurance details')
             return;
         }
+        if (this.checkInsurance(this.state.companyName, this.state.programName)) {
+            alert('This insurance already exist')
+            console.log('kaomai')
+            return;
+        }
+
         this.setState({
             usersInsurance: [...this.state.usersInsurance, {
                 programName: this.state.programName,
@@ -47,6 +54,17 @@ export class UserInput extends Component {
         })
 
 
+    }
+
+    checkInsurance(companyName, programName) {
+        for (let i = 0; i < this.state.usersInsurance.length; i++) {
+            console.log(this.state.usersInsurance[i].company_name)
+            if (companyName === this.state.usersInsurance[i].companyName) {
+                if (programName === this.state.usersInsurance[i].programName) {
+                    return true;
+                }
+            }
+        }
     }
 
     setCompany = (event) => {
@@ -193,7 +211,7 @@ export class UserInput extends Component {
                         <UserHistory id={'1100234567811'} />
                     </div>
                     <div className="user-approve">
-                        <UserPaymentHistory id={'1100234567811'}/>
+                        <UserPaymentHistory id={'1100234567811'} />
                     </div>
                 </div>
             </div>
