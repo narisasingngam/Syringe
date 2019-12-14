@@ -48,8 +48,8 @@
 }
 
 .show-user-details{
-    background: #F9E79F ;
-    color: #873600;
+    background: rgb(249, 231, 159, 0.5) ;
+    color: black;
     width: 650px;
     height: 250px;
     padding: 10px 10px 10px 10px;
@@ -168,4 +168,28 @@
 
   .icon-check {
     color: cadetblue;
+  }
+
+  .history-btn{
+    color: white;
+    background: rgb(41, 91, 184);
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: 15px;
+    border-color:rgb(41, 91, 184);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    margin-left: 48%;
+  }
+
+  .history-btn:hover{
+    color: rgb(41, 91, 184);
+    background: white;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: 15px;
+    border-color:rgb(41, 91, 184);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    margin-left: 48%;
   }

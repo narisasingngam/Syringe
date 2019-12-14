@@ -175,7 +175,6 @@ export class InsurancePage extends Component {
         console.log(this.state.patientDetail)
         return (
             <div className="container">
-                <Link to="/hospitalHistory">History</Link>
                 <div className="insu-page">
                     <div className="user-input">
                         <div className="input-pat-details">
@@ -186,6 +185,9 @@ export class InsurancePage extends Component {
                                 onChange={this.inputID}
                             />
                             <button className="submit-id" onClick={() => this.submitID()}>Enter</button>
+                            <Link to="/hospitalHistory">
+                                <button className="history-btn">History</button>
+                            </Link>
                             <div className="show-user-details">
                                 <div className="text-set">Name: {this.state.nameInput}</div>
                                 <div className="text-set">Date of birth: {this.state.setDate}</div>
