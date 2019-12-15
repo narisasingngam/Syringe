@@ -10,6 +10,7 @@ export class UserLogin extends Component {
         super(props);
 
         cookie.save('name', "", { path: '/' })
+        cookie.save('id', "", { path: '/' })
         this.handleLogin = this.handleLogin.bind(this);
       }
        
@@ -26,7 +27,8 @@ export class UserLogin extends Component {
         request.onreadystatechange = function() {
             if (request.readyState === XMLHttpRequest.DONE){
                 if(JSON.parse(request.response).status === "success"){
-                    cookie.save('name', id)
+                    cookie.save('id', id)
+                    cookie.save('name', JSON.parse(request.response).name)
                     alert("Login success")
                     setTimeout(() => {}, 1000)
                     pro.props.history.push('/');

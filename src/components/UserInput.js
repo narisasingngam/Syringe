@@ -34,29 +34,27 @@ export class UserInput extends Component {
         }
         this.callApi()
 
+        this.cookiedid = cookie.load("id");
         this.cookied = cookie.load("name");
-        this.userDetail()
+        this.setUserDetail()
         
     }
-    userDetail(){
-        let userId = this.cookied
-        axios.post("https://insuranceapii.herokuapp.com/user/allaccount")
+    setUserDetail(){
+        let userId = this.cookiedid
+        axios.get("https://insuranceapii.herokuapp.com/user/allaccount")
         .then(res => {
-            
             res.forEach(element => {
                 if(userId === element.id){
                     this.setState({
                         userDetail:{
-                            id : userId,
+                            id : element.personal_id,
                             name: element.name,
-                            birth_date: element.birthdate,
-                            age: (new Date()).getFullYear() - (new Date(element.birthdate)).getFullYear()
+                            birth_date: element.date_of_birth,
+                            age: (new Date()).getFullYear() - (new Date(element.date_of_birth)).getFullYear()
                         }
                     })
                 }
             });
-
-            
 
         });
     }
@@ -138,7 +136,7 @@ export class UserInput extends Component {
             return;
         }
         this.state.usersInsurance.map((item, key) =>
-            axios.post('https://insuranceapii.herokuapp.com/user/addinsurance', { id: this.state.userDetail.id, name: this.userDetail.name, birthdate: this.userDetail.birth_date, program: item.programName, company: item.companyName })
+            axios.post('https://insuranceapii.herokuapp.com/user/addinsurance', { id: this.state.userDetail.id, name: this.state.userDetail.name, birthdate: this.userDetail.state.birth_date, program: item.programName, company: item.companyName })
                 .then(res => {
                     alert('Input success')
                     console.log(key)
@@ -177,7 +175,7 @@ export class UserInput extends Component {
         }else{
         return (
           <div>
-            <Navbar value={cookie.load("name")} />
+            <Navbar value={cookie.load("id")} />
             <div className="container">
               <div style={{ display: "flex" }}>
                 <div className="user-box">

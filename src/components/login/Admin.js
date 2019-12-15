@@ -9,6 +9,7 @@ export class AdminLogin extends Component {
     constructor(props) {
         super(props);
         cookie.save('name', "", { path: '/' })
+        cookie.save('id', "", { path: '/' })
         this.handleSignUp = this.handleSignUp.bind(this);
       }
 
