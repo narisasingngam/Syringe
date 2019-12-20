@@ -43,13 +43,14 @@ export class UserInput extends Component {
         let userId = this.cookiedid
         axios.get("https://insuranceapii.herokuapp.com/user/allaccount")
         .then(res => {
-            res.forEach(element => {
-                if(userId === element.id){
+            res.data.forEach(element => {
+                if(parseInt(userId) === element.personal_id){
+                    let date = element.date_of_birth.split('T')
                     this.setState({
                         userDetail:{
                             id : element.personal_id,
                             name: element.name,
-                            birth_date: element.date_of_birth,
+                            birth_date: date[0],
                             age: (new Date()).getFullYear() - (new Date(element.date_of_birth)).getFullYear()
                         }
                     })
@@ -136,7 +137,7 @@ export class UserInput extends Component {
             return;
         }
         this.state.usersInsurance.map((item, key) =>
-            axios.post('https://insuranceapii.herokuapp.com/user/addinsurance', { id: this.state.userDetail.id, name: this.state.userDetail.name, birthdate: this.userDetail.state.birth_date, program: item.programName, company: item.companyName })
+            axios.post('https://insuranceapii.herokuapp.com/user/addinsurance', { id: this.state.userDetail.id, name: this.state.userDetail.name, birthdate: this.state.userDetail.birth_date, program: item.programName, company: item.companyName })
                 .then(res => {
                     alert('Input success')
                     console.log(key)
@@ -245,10 +246,10 @@ export class UserInput extends Component {
               </div>
               <div style={{ display: "flex" }}>
                 <div className="user-history">
-                  <UserHistory id={"1100234567811"} />
+                  <UserHistory id={this.cookiedid} />
                 </div>
                 <div className="user-approve">
-                  <UserPaymentHistory id={"1100234567811"} />
+                  <UserPaymentHistory id={this.cookiedid} />
                 </div>
               </div>
             </div>
