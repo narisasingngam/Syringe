@@ -34,7 +34,7 @@ export class ShowInsuranceDetail extends Component {
 
         return (
             <div className= "table-size">
-                <Table responsive>
+                <Table>
                     <thead>
                         <tr>
                             <th>No.</th>

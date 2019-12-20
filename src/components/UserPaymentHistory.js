@@ -19,20 +19,12 @@ export class UserPaymentHistory extends Component {
                 console.log(res.data)
                 this.setState({ payment: res.data })
             })
-            // .then(res => this.getDateAndTime())
     }
-
-    // getDateAndTime(){
-            // const date = item.time.split('T')
-    //         const date_split = date[0].split('-')
-    //         const date_user = date_split[2] + "-" + date_split[1] + "-" + date_split[0]
-    // }
 
     render() {
 
         const detail = this.state.payment.map((item, key) =>
             <tr>
-                {/* <th scope="row">{key + 1}</th> */}
                 <td>{item.insurance_company}</td>
                 <td>{item.insurance_program}</td>
                 <td>{item.disease}</td>

@@ -33,10 +33,10 @@ export class UserInput extends Component {
             }
         }
         this.callApi()
-
         this.cookiedid = cookie.load("id");
         this.cookied = cookie.load("name");
         this.setUserDetail()
+      this.checkInsurance = this.checkInsurance.bind(this)
         
     }
     setUserDetail(){
@@ -58,6 +58,7 @@ export class UserInput extends Component {
             });
 
         });
+
     }
 
     callApi() {
@@ -72,6 +73,12 @@ export class UserInput extends Component {
             alert('Please insert your insurance details')
             return;
         }
+        if (this.checkInsurance(this.state.companyName, this.state.programName)) {
+            alert('This insurance already exist')
+            console.log('kaomai')
+            return;
+        }
+
         this.setState({
             usersInsurance: [...this.state.usersInsurance, {
                 programName: this.state.programName,
@@ -81,6 +88,17 @@ export class UserInput extends Component {
         })
 
 
+    }
+
+    checkInsurance(companyName, programName) {
+        for (let i = 0; i < this.state.usersInsurance.length; i++) {
+            console.log(this.state.usersInsurance[i].company_name)
+            if (companyName === this.state.usersInsurance[i].companyName) {
+                if (programName === this.state.usersInsurance[i].programName) {
+                    return true;
+                }
+            }
+        }
     }
 
     setCompany = (event) => {
@@ -247,7 +265,6 @@ export class UserInput extends Component {
               <div style={{ display: "flex" }}>
                 <div className="user-history">
                   <UserHistory id={this.cookiedid} />
-                </div>
                 <div className="user-approve">
                   <UserPaymentHistory id={this.cookiedid} />
                 </div>
