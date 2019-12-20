@@ -4,6 +4,9 @@ import axios from 'axios';
 import PatientInsurance from './PatientInsurance'
 import TableResult from './TableResult'
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar'
+import cookie from 'react-cookies'
+import { Redirect } from 'react-router-dom'
 
 export class InsurancePage extends Component {
 
@@ -40,6 +43,8 @@ export class InsurancePage extends Component {
             userAge: ""
         }
         this.callApi()
+
+        this.cookied = cookie.load('name')
     }
 
     callApi() {
@@ -173,7 +178,15 @@ export class InsurancePage extends Component {
             </h5>
         )
         console.log(this.state.patientDetail)
+
+        if (this.cookied === '' ){
+            return <Redirect to='/login/user' />
+        }else if(this.cookied !== 'admin'){
+            return <Redirect to='/' />
+        }else{
         return (
+            <div>
+                <Navbar value={cookie.load('name')}/>
             <div className="container">
                 <div className="insu-page">
                     <div className="user-input">
@@ -241,7 +254,9 @@ export class InsurancePage extends Component {
                     <button className="save-btn" onClick={() => this.clickSave()}>Save</button>
                 </footer>
             </div>
+            </div>
         )
+        }
     }
 }
 
