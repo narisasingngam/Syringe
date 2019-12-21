@@ -18,6 +18,17 @@
     box-sizing: border-box;
 }
 
+.cancel-signup{
+    width: 20%;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    padding: 5px 5px;
+    margin: 8px 2%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .login-signup{
   width: 20%;
   background-color: rgb(247, 207, 28);
@@ -55,11 +66,11 @@
 }
 
 .mg-top-default{
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 .mg-buttom-default{
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 .loginH1{
     margin: 0;

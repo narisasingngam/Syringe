@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Carousel, Button } from 'react-bootstrap'
 import './../styles/patientInsurance.css'
+import './../styles/loading.css'
 
 
 export default class PatientInsurance extends Component {
@@ -76,9 +77,14 @@ export default class PatientInsurance extends Component {
         )
 
         let carousel;
-        if (this.props.insuranceDetail[0].name === "") {
-            carousel = ""
-        } else {
+        if (this.props.insuranceDetail.length === 0) {
+            carousel = <div style={{ fontSize: '16px', textAlign: 'center' }}>No insurance detail</div>
+        } 
+        else if(this.props.load === true){
+
+            carousel = <div class="loader">Loading...</div>
+        }
+        else {
             carousel =
                 <Carousel indicators="false" pauseOnHover="true" interval="10000">
                     {details}
