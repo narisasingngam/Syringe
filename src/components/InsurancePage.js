@@ -37,7 +37,8 @@ export class InsurancePage extends Component {
                 payment_cost: ""
             }],
             yearInput: "",
-            userAge: ""
+            userAge: "",
+            loading: false
         }
         this.callApi()
 
@@ -149,11 +150,11 @@ export class InsurancePage extends Component {
 
     clickDisease(symtomp) {
         console.log("clickDisease")
-        this.setState({ searchDisease: [], valueDiseaseInput: symtomp })
+        this.setState({ searchDisease: [], valueDiseaseInput: symtomp, loading: true })
         axios.post('https://insuranceapii.herokuapp.com/user/details/disease', { id: this.state.setInput, disease: symtomp })
             .then(res => {
                 console.log(res.data)
-                this.setState({ patientDetail: res.data })
+                this.setState({ patientDetail: res.data, loading: false })
             })
             .catch(error => { console.log('error') })
         // console.log(symtomp)
@@ -174,83 +175,85 @@ export class InsurancePage extends Component {
             </h5>
         )
 
-        if (this.cookied === '' ){
+        if (this.cookied === '') {
             return <Redirect to='/login/user' />
-        }else if(this.cookied !== 'admin'){
+        } else if (this.cookied !== 'admin') {
             return <Redirect to='/' />
-        }else{
-        return (
-            <div>
-                <Navbar value={cookie.load('name')}/>
-            <div className="container">
-                <div className="insu-page">
-                    <div className="user-input">
-                        <div className="input-pat-details">
-                            <h5>Patient details</h5>
-                            <input
-                                className="input-id"
-                                placeholder="Insert patient's ID card"
-                                onChange={this.inputID}
-                            />
-                            <button className="submit-id" onClick={() => this.submitID()}>Enter</button>
-                            <Link to="/hospitalHistory">
-                                <button className="history-btn">History</button>
-                            </Link>
-                            <div className="show-user-details">
-                                <div className="text-set">Name: {this.state.nameInput}</div>
-                                <div className="text-set">Date of birth: {this.state.setDate}</div>
-                                <div>
+        } else {
+            return (
+                <div>
+                    <Navbar value={cookie.load('name')} />
+                    <div className="container">
+                        <div className="insu-page">
+                            <div className="user-input">
+                                <div className="input-pat-details">
+                                    <h5>Patient details</h5>
                                     <input
-                                        className="input-disease"
-                                        placeholder="Insert patient disease"
-                                        onChange={this.handleInputDisease}
-                                        value={this.state.valueDiseaseInput}
+                                        className="input-id"
+                                        placeholder="Insert patient's ID card"
+                                        onChange={this.inputID}
                                     />
-                                    <input onChange={this.handleInputCost}
-                                        className="input-disease"
-                                        placeholder="Insert payment cost"
-                                    />
+                                    <button className="submit-id" onClick={() => this.submitID()}>Enter</button>
+                                    <Link to="/hospitalHistory">
+                                        <button className="history-btn">History</button>
+                                    </Link>
+                                    <div className="show-user-details">
+                                        <div className="text-set">Name: {this.state.nameInput}</div>
+                                        <div className="text-set">Date of birth: {this.state.setDate}</div>
+                                        <div>
+                                            <input
+                                                className="input-disease"
+                                                placeholder="Insert patient disease"
+                                                onChange={this.handleInputDisease}
+                                                value={this.state.valueDiseaseInput}
+                                            />
+                                            <input onChange={this.handleInputCost}
+                                                className="input-disease"
+                                                placeholder="Insert payment cost"
+                                            />
+                                        </div>
+                                        <div className="item-disease">
+                                            {items}
+                                        </div>
+                                        <div className="scroll">
+                                            {userInsurance}
+                                        </div>
+                                        <button className="submit-id" onClick={() => this.searchInsurance()} disabled={this.state.searchDisabled}>Search</button>
+                                    </div>
                                 </div>
-                                <div className="item-disease">
-                                    {items}
-                                </div>
-                                <div className="scroll">
-                                    {userInsurance}
-                                </div>
-                                <button className="submit-id" onClick={() => this.searchInsurance()} disabled={this.state.searchDisabled}>Search</button>
+                            </div>
+                            <div className="user-status">
+                                <h5 className="insure-text">Patient Insurance</h5>
+                                <PatientInsurance insuranceDetail={this.state.patientDetail}
+                                    selectedInsurance={v => this.setState({ userSelectedInsurance: v })}
+                                    currentInsurance={this.state.currentInsurance}
+                                    disabled={this.state.isDisabled}
+                                    searchDisabled={v => this.setState({ searchDisabled: v })}
+                                    totalCost={this.state.totalCost}
+                                    load={this.state.loading}
+                                />
                             </div>
                         </div>
-                    </div>
-                    <div className="user-status">
-                        <h5 className="insure-text">Patient Insurance</h5>
-                        <PatientInsurance insuranceDetail={this.state.patientDetail}
-                            selectedInsurance={v => this.setState({ userSelectedInsurance: v })}
-                            currentInsurance={this.state.currentInsurance}
-                            disabled={this.state.isDisabled}
-                            searchDisabled={v => this.setState({ searchDisabled: v })}
-                            totalCost={this.state.totalCost} />
+                        <footer class="footer" style={this.state.enabledOrder ? {} : { display: 'none' }} >
+                            <div className="icon-check">
+                                <i class="far fa-check-circle fa-2x "></i>
+                                {/* <i class="far fa-times-circle fa-2x "></i> */}
+                            </div>
+                            <h6 className="approve-text">
+                                Patient Insurance approve!
+                    </h6>
+                            <br></br>
+                            <h6>ID: {this.state.setInput}</h6>
+                            <h6>Name: {this.state.nameInput}</h6>
+                            <h6>Disease: {this.state.valueDiseaseInput}</h6>
+                            <h6>Payment Cost: THB{this.state.totalCost}</h6>
+                            <br></br>
+                            <TableResult selectedInsurance={this.state.userSelectedInsurance} />
+                            <button className="save-btn" onClick={() => this.clickSave()}>Save</button>
+                        </footer>
                     </div>
                 </div>
-                <footer class="footer" style={this.state.enabledOrder ? {} : { display: 'none' }} >
-                    <div className="icon-check">
-                        <i class="far fa-check-circle fa-2x "></i>
-                        {/* <i class="far fa-times-circle fa-2x "></i> */}
-                    </div>
-                    <h6 className="approve-text">
-                        Patient Insurance approve!
-                    </h6>
-                    <br></br>
-                    <h6>ID: {this.state.setInput}</h6>
-                    <h6>Name: {this.state.nameInput}</h6>
-                    <h6>Disease: {this.state.valueDiseaseInput}</h6>
-                    <h6>Payment Cost: THB{this.state.totalCost}</h6>
-                    <br></br>
-                    <TableResult selectedInsurance={this.state.userSelectedInsurance} />
-                    <button className="save-btn" onClick={() => this.clickSave()}>Save</button>
-                </footer>
-            </div>
-            </div>
-        )
+            )
         }
     }
 }
