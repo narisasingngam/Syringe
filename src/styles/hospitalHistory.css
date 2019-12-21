@@ -5,3 +5,25 @@
 .table-col{
     background-color: rgb(247, 207, 28,0.2);
 }
+
+.back-btn{
+    color: white;
+    background: rgb(41, 91, 184);
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: 15px;
+    border-color:rgb(41, 91, 184);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+}
+
+.back-btn:hover{
+    color:  rgb(41, 91, 184);
+    background: white;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: 15px;
+    border-color:rgb(41, 91, 184);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+}
