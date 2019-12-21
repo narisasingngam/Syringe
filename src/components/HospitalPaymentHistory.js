@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Table} from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
+import cookie from 'react-cookies'
 import './../styles/hospitalHistory.css'
+import Navbar from './Navbar'
+import { Link } from 'react-router-dom'
 
 export class HospitalPaymentHistory extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             historyDetail: []
         }
         this.callAPI()
     }
 
-    callAPI(){
+    callAPI() {
         axios.get('https://insuranceapii.herokuapp.com/user/all/history')
             .then(res => {
                 console.log(res.data)
@@ -23,7 +26,7 @@ export class HospitalPaymentHistory extends Component {
 
     render() {
 
-        const detail = this.state.historyDetail.map((item,key)=>
+        const detail = this.state.historyDetail.map((item, key) =>
             <tr>
                 <td>{item.personal_id}</td>
                 <td>{item.user_name}</td>
@@ -39,26 +42,33 @@ export class HospitalPaymentHistory extends Component {
 
         return (
             <div>
+                <Navbar value={cookie.load('name')} />
                 <footer className="table-hosp">
-                <Table responsive>
-                    <thead className="table-col">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">User Name</th>
-                            <th scope="col">Age</th>
-                            <th scope="col">Company Name</th>
-                            <th scope="col">Program Name</th>
-                            <th scope="col">Disease</th>
-                            <th scope="col">Covered Expense</th>
-                            <th scope="col">Payment Cost</th>
-                            <th scope="col">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {detail}
-                    </tbody>
-                </Table>
+                    <Table responsive>
+                        <thead className="table-col">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">User Name</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Company Name</th>
+                                <th scope="col">Program Name</th>
+                                <th scope="col">Disease</th>
+                                <th scope="col">Covered Expense</th>
+                                <th scope="col">Payment Cost</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {detail}
+                        </tbody>
+                    </Table>
                 </footer>
+                <center>
+                    <Link to="/admin">
+                        <button className="back-btn">Back</button>
+                    </Link>
+                </center>
+
             </div>
         )
     }
