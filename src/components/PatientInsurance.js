@@ -76,7 +76,7 @@ export default class PatientInsurance extends Component {
         )
 
         let carousel;
-        if (this.props.insuranceDetail[0].name === "") {
+        if (this.props.insuranceDetail.length === 0) {
             carousel = ""
         } else {
             carousel =

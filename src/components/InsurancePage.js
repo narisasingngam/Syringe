@@ -13,10 +13,7 @@ export class InsurancePage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            patientDetail: [{
-                name: "",
-                date_of_birth: "",
-            }],
+            patientDetail: [],
             nameInput: "",
             setInput: "",
             setDate: "",

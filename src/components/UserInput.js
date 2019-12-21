@@ -161,6 +161,7 @@ export class UserInput extends Component {
                     console.log(key)
                 })
                 .catch(error => { console.log('error') })
+                .then(res => window.location.reload())
         )
     }
 
