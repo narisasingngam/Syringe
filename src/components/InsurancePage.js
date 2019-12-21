@@ -153,8 +153,7 @@ export class InsurancePage extends Component {
     clickDisease(symtomp) {
         console.log("clickDisease")
         this.setState({ searchDisease: [], valueDiseaseInput: symtomp })
-
-        axios.post('https://insuranceapii.herokuapp.com/user/details/disease', { id: this.state.patientDetail[0].personal_id, disease: symtomp })
+        axios.post('https://insuranceapii.herokuapp.com/user/details/disease', { id: this.state.setInput, disease: symtomp })
             .then(res => {
                 console.log(res.data)
                 this.setState({ patientDetail: res.data })
@@ -177,7 +176,6 @@ export class InsurancePage extends Component {
             <button className="select-btn" onClick={() => this.removeInsurance(key)}>-</button>
             </h5>
         )
-        console.log(this.state.patientDetail)
 
         if (this.cookied === '' ){
             return <Redirect to='/login/user' />

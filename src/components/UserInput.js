@@ -265,6 +265,7 @@ export class UserInput extends Component {
               <div style={{ display: "flex" }}>
                 <div className="user-history">
                   <UserHistory id={this.cookiedid} />
+                  </div>
                 <div className="user-approve">
                   <UserPaymentHistory id={this.cookiedid} />
                 </div>
